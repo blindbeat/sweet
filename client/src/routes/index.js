@@ -1,12 +1,12 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useSelector } from 'react-redux'
 
-import { LOGIN_ROUTE, SIGNUP_ROUTE, EVENTS_ROUTE, EVENT_ROUTE, CONTENT_ROUTE, ADMIN_EVENTS, ADMIN_ROUTE, ADMIN_CONTENT, ADMIN_CATEGORIES } from "./Paths"
+import { LOGIN_ROUTE, SIGNUP_ROUTE, EVENTS_ROUTE, EVENT_ROUTE, SWIPER_ROUTE, ADMIN_EVENTS, ADMIN_ROUTE, ADMIN_CONTENT, ADMIN_CATEGORIES } from "./Paths"
 
 import Auth from '../components/pages/Auth/index.js'
 import Events from '../components/pages/Events'
 import Event from '../components/pages/Events/Card'
-import Content from '../components/pages/Content'
+import Swiper from '../components/pages/Swiper'
 
 import Admin from '../components/pages/Admin'
 import AdminEvents from "../components/pages/Admin/Events/eventPanel"
@@ -30,8 +30,8 @@ export default function Router() {
             <Route exact path={`${EVENT_ROUTE}/:id`}>
                 <Event />
             </Route>
-            <Route exact path={CONTENT_ROUTE}>
-                <Content />
+            <Route exact path={SWIPER_ROUTE}>
+                <Swiper />
             </Route>
             {role === 'ADMIN' &&
                 <>
