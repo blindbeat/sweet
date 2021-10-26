@@ -1,24 +1,19 @@
 import axios from 'axios'
-import { getCategoriesRequest } from 'api/categories'
+import { getCategoriesRequest, createCategoryRequest, uploadCategoryImagerequest } from 'api/categories'
 import { asyncUpdateCategories } from 'store/authSlice'
 import { SERVER_URI } from 'config'
 import store from 'store'
 
 
-export const CreateCategory = async (formData) => {
-    try {
-        const { data } = await axios.post(`${SERVER_URI}/api/category`, {
-            headers: { "Authorization": `Bearer ${localStorage.getItem('token')}` }
-        }, formData)
-        localStorage.setItem('token', data.token)
-    } catch (e) {
-        console.log(e)
-    }
+export const createCategory = async (form) => {
+    return await createCategoryRequest(form)
+}
+export const uploadCategoryImage = async (image) => {
+    return await uploadCategoryImagerequest(image)
 }
 
-export async function GetCategories() {
-    return getCategoriesRequest();
-
+export async function getCategories() {
+    return await getCategoriesRequest();
 }
 
 export const GetCategory = async (id) => {

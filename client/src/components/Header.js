@@ -3,15 +3,13 @@ import menuSvg from 'images/menu.svg'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { logout } from 'actions/userActions'
-import Drawer from '@material-ui/core/Drawer';
-import { Divider, IconButton, List, ListItem, ListItemText } from '@material-ui/core'
+import { Drawer, Divider, IconButton, List, ListItem, ListItemText } from '@mui/material'
 import { useState } from 'react'
 
 const Header = () => {
     const isAuth = useSelector(state => state.user.isAuth)
     const role = useSelector(state => state.user.role)
     const [open, setOpen] = useState(false)
-
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -57,14 +55,14 @@ const Header = () => {
                                     <ListItemText primary='Selection' />
                                 </ListItem>
                             </NavLink>
+                            {role === 'admin' && (
+                                <NavLink to={`/admin`}>
+                                    <ListItem button>
+                                        <ListItemText primary='Admin' />
+                                    </ListItem>
+                                </NavLink>
+                            )}
                         </List>
-                        {role.role === 'ADMIN' && (
-                            <NavLink to={`/admin`}>
-                                <ListItem button>
-                                    <ListItemText primary='Admin' />
-                                </ListItem>
-                            </NavLink>
-                        )}
                         {isAuth && (
                             <>
                                 <Divider />

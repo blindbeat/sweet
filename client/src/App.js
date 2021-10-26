@@ -11,7 +11,7 @@ import { checkAuth } from "./store/authSlice";
 function App() {
   const isAuth = useSelector(checkAuth)
   const [invitationVisible, setInvitationvisible] = useState(false);
-  const [tutorialVisible, setTutorialVisible] = useState(true);
+  const [tutorialVisible, setTutorialVisible] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token')

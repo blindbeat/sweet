@@ -1,7 +1,7 @@
-@import '../../../fonts/fonts';
+@import "../../../fonts/fonts";
 
 $font-stack: HelveticaNeueCyr, sans-serif;
-$main-color: #03ADD2;
+$main-color: #03add2;
 
 .signup {
     text-align: center;
@@ -55,7 +55,7 @@ $main-color: #03ADD2;
             position: relative;
             width: 100%;
             .active {
-                border-bottom: 1px solid #03ADD2;;
+                border-bottom: 1px solid #03add2;
             }
             svg {
                 position: absolute;
@@ -67,14 +67,14 @@ $main-color: #03ADD2;
                 background: transparent;
                 width: calc(100% - 50px);
                 border: none;
-                border-bottom: 1px solid #DADADA;
+                border-bottom: 1px solid #dadada;
                 padding: 12px 10px 12px 40px;
                 &:focus {
                     outline: none;
-                    border-bottom: 1px solid #03ADD2;
+                    border-bottom: 1px solid #03add2;
                 }
                 &:focus + svg path {
-                    fill: #03ADD2;
+                    fill: #03add2;
                 }
             }
         }
@@ -96,29 +96,29 @@ $main-color: #03ADD2;
                 z-index: -1;
                 opacity: 0;
             }
-            input+label {
+            input + label {
                 cursor: pointer;
                 display: inline-flex;
                 align-items: center;
                 user-select: none;
             }
-            input+label::before {
+            input + label::before {
                 cursor: pointer;
-                content: '';
+                content: "";
                 display: inline-block;
                 width: 1em;
                 height: 1em;
                 flex-shrink: 0;
                 flex-grow: 0;
-                border: 1px solid #03ADD2;
+                border: 1px solid #03add2;
                 border-radius: 0.25em;
                 margin-right: 0.5em;
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-size: 50% 50%;
             }
-            input:checked+label::before {
-                background: #03ADD2;
+            input:checked + label::before {
+                background: #03add2;
                 background-size: 75%;
                 background-repeat: no-repeat;
                 background-position: center;
@@ -130,7 +130,7 @@ $main-color: #03ADD2;
             font-size: 18px;
             font-weight: 500;
             text-decoration: none;
-            color: #03ADD2;
+            color: #03add2;
         }
     }
 }
@@ -152,7 +152,6 @@ $main-color: #03ADD2;
             left: 0;
             top: auto;
             bottom: 35%;
-        
         }
         .img2 {
             position: absolute;
@@ -171,5 +170,4 @@ $main-color: #03ADD2;
             position: absolute;
         }
     }
-    
 }

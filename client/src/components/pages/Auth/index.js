@@ -1,19 +1,19 @@
+import { LOGIN_ROUTE } from 'routes/Paths'
+import { login, registration } from 'actions/userActions'
+
 import styles from './Auth.module.scss'
+import { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import { InputAdornment, TextField } from '@mui/material'
+import Button from '../../Button'
+
 import signup1 from 'images/signup1.svg'
 import signup1Mobile from 'images/signup1-mobile.svg'
 import signup2 from 'images/signup2.svg'
-import { login, registration } from 'actions/userActions'
-import { useEffect, useState } from 'react'
-import Button from '../../Button'
-import { LOGIN_ROUTE } from 'routes/Paths'
-import { InputAdornment, TextField } from "@material-ui/core"
 import { ReactComponent as EmailIcon } from 'images/email.svg'
 import { ReactComponent as PasswordIcon } from 'images/password.svg'
 
-console.log(fetch('/test'));
-
-const SignUp = () => {
+export default function SignUp() {
 
     const [requestPending, setRequestPending] = useState(false)
     const location = useLocation()
@@ -34,7 +34,7 @@ const SignUp = () => {
         let newValidationError = { ...validationError }
 
         if (form.email !== '' && !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(form.email)) {
-            console.log('test');
+            console.log('test')
             newValidationError = { ...newValidationError, email: 'Invalid email address' }
 
         }
@@ -65,7 +65,7 @@ const SignUp = () => {
     }, [isLogin])
 
     function handleChange(event) {
-        const newForm = { ...form, [event.target.name]: event.target.value };
+        const newForm = { ...form, [event.target.name]: event.target.value }
         validateForm(newForm)
         setForm(newForm)
     }
@@ -75,38 +75,38 @@ const SignUp = () => {
         switch (isLogin) {
             case true:
                 try {
-                    setRequestPending(true);
-                    await login(form);
+                    setRequestPending(true)
+                    await login(form)
                 } catch (error) {
-                    console.log(error);
+                    console.log(error)
                     if (error.message === 'User not found' || error.message === 'Invalid credentials') {
                         setValidationError({ ...validationError, email: 'Wrong email or password' })
-                        setRequestPending(false);
+                        setRequestPending(false)
                     } else {
                         setValidationError({ ...validationError, email: 'Unknown error' })
-                        setRequestPending(false);
+                        setRequestPending(false)
                         throw error
                     }
                 }
-                break;
+                break
             case false:
                 try {
-                    setRequestPending(true);
-                    await registration(form);
+                    setRequestPending(true)
+                    await registration(form)
                 } catch (error) {
-                    console.log(error);
+                    console.log(error)
                     if (error.message === 'This email was registered earlier') {
                         setValidationError({ ...validationError, email: 'User already exists' })
-                        setRequestPending(false);
+                        setRequestPending(false)
                     } else {
                         setValidationError({ ...validationError, email: 'Unknown error' })
-                        setRequestPending(false);
+                        setRequestPending(false)
                         throw error
                     }
                 }
-                break;
+                break
             default:
-                return;
+                return
         }
     }
 
@@ -129,19 +129,19 @@ const SignUp = () => {
                             type='email'
                             name='email'
                             value={form.email}
-                            autoComplete='on'
+                            autoComplete='email'
                             placeholder='Your email adress'
                             onChange={handleChange}
                             fullWidth
                             margin='dense'
+                            variant="standard"
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position='start'>
                                         <EmailIcon style={{ width: '30px' }} />
                                     </InputAdornment>
                                 )
-                            }}
-                        />
+                            }} />
                         <TextField
                             required
                             error={validationError.password !== null}
@@ -149,19 +149,19 @@ const SignUp = () => {
                             type='password'
                             name='password'
                             value={form.password}
-                            autoComplete='on'
+                            autoComplete={isLogin ? 'current-password' : 'new-password'}
                             placeholder='Password'
                             onChange={handleChange}
                             fullWidth
                             margin='dense'
+                            variant="standard"
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position='start'>
                                         <PasswordIcon style={{ width: '30px' }} />
                                     </InputAdornment>
                                 )
-                            }}
-                        />
+                            }} />
                         {!isLogin &&
                             <TextField
                                 required
@@ -170,21 +170,19 @@ const SignUp = () => {
                                 type='password'
                                 name='confirm_password'
                                 value={form.confirm_password}
-                                autoComplete='on'
+                                autoComplete='new-password'
                                 placeholder='Confirm password'
                                 onChange={handleChange}
                                 fullWidth
                                 margin='dense'
+                                variant="standard"
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position='start'>
                                             <PasswordIcon style={{ width: '30px' }} />
                                         </InputAdornment>
                                     )
-                                }}
-                            />
-
-                        }
+                                }} />}
                         {!isLogin &&
                             <div className={styles.terms}>
                                 <input required id='terms' type='checkbox' />
@@ -192,13 +190,11 @@ const SignUp = () => {
                                 <div className={styles.terms__desc}>
                                     I agree to the <NavLink className={styles.link} to={`signin`}>Terms of Services</NavLink> <br /> and <NavLink className={styles.link} to={`signin`}>Privacy Policy</NavLink>
                                 </div>
-                            </div>
-                        }
+                            </div>}
                         <Button
                             disabled={validationError.email !== null || validationError.password !== null || validationError.confirm_password !== null || requestPending}
                             className='btn_auth'
-                            title={isLogin ? 'login' : 'Sign up'}
-                        />
+                            title={isLogin ? 'login' : 'Sign up'} />
 
                     </form>
                 </div>
@@ -206,5 +202,3 @@ const SignUp = () => {
         </div>
     )
 }
-
-export default SignUp

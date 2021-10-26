@@ -1,11 +1,11 @@
 import styles from './Swiper.module.scss'
-import closeImg from '../../../images/close_2.svg'
-import likeImg from '../../../images/like.svg'
+import closeImg from 'images/close_2.svg'
+import likeImg from 'images/like.svg'
 import { useEffect, useState } from 'react'
-import { GetContents } from '../../../actions/contentAction'
+import { GetContents } from 'actions/contentAction'
 import Loader from '../../Loader'
-import { addCategories, GetCategory } from '../../../actions/categoriesActions'
-import { SERVER_URI } from '../../../config'
+import { addCategories, GetCategory } from 'actions/categoriesActions'
+import { SERVER_URI } from 'config'
 
 
 const Content = (props) => {

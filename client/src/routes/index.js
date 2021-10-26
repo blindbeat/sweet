@@ -1,17 +1,14 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useSelector } from 'react-redux'
 
-import { LOGIN_ROUTE, SIGNUP_ROUTE, EVENTS_ROUTE, EVENT_ROUTE, SWIPER_ROUTE, ADMIN_EVENTS, ADMIN_ROUTE, ADMIN_CONTENT, ADMIN_CATEGORIES } from "./Paths"
+import { LOGIN_ROUTE, SIGNUP_ROUTE, EVENTS_ROUTE, EVENT_ROUTE, SWIPER_ROUTE, ADMIN_ROUTE } from "./Paths"
 
 import Auth from '../components/pages/Auth/index.js'
 import Events from '../components/pages/Events'
 import Event from '../components/pages/Events/Card'
 import Swiper from '../components/pages/Swiper'
 
-import Admin from '../components/pages/Admin'
-import AdminEvents from "../components/pages/Admin/Events/eventPanel"
-import AdminContent from '../components/pages/Admin/Content'
-import Categories from '../components/pages/Admin/Categories'
+import Admin from "components/pages/Admin";
 
 import NotFound from "../components/404";
 
@@ -33,21 +30,10 @@ export default function Router() {
             <Route exact path={SWIPER_ROUTE}>
                 <Swiper />
             </Route>
-            {role === 'ADMIN' &&
-                <>
-                    <Route exact path={ADMIN_ROUTE}>
-                        <Admin />
-                    </Route>
-                    <Route exact path={ADMIN_EVENTS}>
-                        <AdminEvents />
-                    </Route>
-                    <Route exact path={ADMIN_CONTENT}>
-                        <AdminContent />
-                    </Route>
-                    <Route exact path={ADMIN_CATEGORIES}>
-                        <Categories />
-                    </Route>
-                </>
+            {role === 'admin' &&
+                <Route path={ADMIN_ROUTE}>
+                    <Admin />
+                </Route>
             }
             <Route path="*">
                 <NotFound />

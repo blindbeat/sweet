@@ -5,8 +5,8 @@ import Masonry from 'react-masonry-css'
 import { useEffect, useState } from 'react'
 import Filter from './Filter/index'
 import { useHistory } from 'react-router-dom'
-import { GetEvents } from 'actions/eventAction'
-import { GetCategories, setAllCategoriesActive, toggleCategoryState } from 'actions/categoriesActions'
+import { GetEvents } from 'actions/eventActions'
+import { getCategories, setAllCategoriesActive, toggleCategoryState } from 'actions/categoriesActions'
 import { useSelector } from 'react-redux'
 import { SERVER_URI } from 'config'
 import { getSelectedCategories } from 'store/authSlice'
@@ -20,9 +20,7 @@ const breakpointColumnsObj = {
     400: 2
 }
 
-function CategoryButton(props) {
-    const { active = true, imgId, title, color = '#fff', clickHandler = undefined } = props
-    console.log(active);
+function CategoryButton({ active = true, imgId, title, color = '#fff', clickHandler = undefined }) {
     return (
         <div data-active={active} style={{ background: color }} className={`${styles.tab__item}`} onClick={clickHandler}>
             {imgId && <img className={styles.tab__itemImg} src={`${SERVER_URI}/categories/${imgId}`} alt={`${title}`} />}
@@ -44,7 +42,7 @@ const Events = () => {
     const selectedCategories = useSelector(getSelectedCategories)
 
     useEffect(() => {
-        GetCategories()
+        getCategories()
             .then(data => {
                 setAllCategories(data)
             })
